@@ -9,6 +9,11 @@ class Toggler extends Component {
     state= {
         on: this.props.defaultOnValue
     }
+
+    static defaultPorps= {
+        defaultOnValue: false
+    }
+
     toggle= () => {
         this.setState(prevState => {
             return {
@@ -16,13 +21,18 @@ class Toggler extends Component {
             }
         })
     }
+
     render() {
         // const Component = this.props.component //this component can be everything.
-        const {component: C, defaultOnValue, ...props} = this.props
         return (
-            <Component on={this.state.on} toggle= {this.toggle} {...props} />
-        )
+            <div>
+                
+            {this.props.render(this.state.on, this.toggle)}
+        
+            </div>
+            )
     }
+
 
 }
 //   function withToggler(component) {
@@ -33,11 +43,12 @@ class Toggler extends Component {
 //     }
 // }
 
-export function withToggler(component, optionsObj) {
-    return function(props) {
-        return (
-            <Toggler component = {component} defaultOnValue= {optionsObj.defaultOnValue} {...props} />
-        )
-    }
-}
+// export function withToggler(component, optionsObj) {
+//     return function(props) {
+//         return (
+//             <Toggler component = {component} defaultOnValue= {optionsObj.defaultOnValue} {...props} />
+//         )
+//     }
+// }
 
+export default Toggler

@@ -1,34 +1,27 @@
-import React, { Component } from 'react'
-import {withToggler} from './HOCs/withToggler'
+import React from 'react'
+import Toggler from './HOCs/Toggler'
 
 function Menu(props) {
-    // state = {
-    //     show: true
-    // }
 
-    // toggleShow = () => {
-    //     this.setState(prevState =>  {
-    //         return {
-    //             show: !prevState.show
-    //         }
-    //     })
-    // }
-    // render () {
         return (
-            <div>
-                <button onClick= {this.toggle}> {this.props.on ? "Hide" : "Show" } Menu </button>
-                    <nav style= {{display: props.on ? "block" : "none" }}>
+            <Toggler defaultOnValue= {true}  render= { (on, toggle)=> (
 
-                        <h6>Signed in as Prakash</h6>
-                        <a>Your Profile</a>
-                        <a>Your Repositories</a>
-                        <a>Your Stars</a>
-                        <a>Your Gists</a>
+            <div>
+                <button onClick= {toggle}> {on ? "Hide" : "Show" } Menu </button>
+                    <nav style= {{display: on ? "block" : "none" }}>
+
+                        <h6>Signed in as Prakash</h6><br/>
+                        <a>Your Profile</a><br/>
+                        <a>Your Repositories</a><br/>
+                        <a>Your Stars</a><br/>
+                        <a>Your Gists</a><br/>
         
                 </nav>
             </div>
+            )} />
         )
     }
 // }
 
-export default withToggler(Menu, {defaultOnValue: true})
+// export default withToggler(Menu, {defaultOnValue: true})
+export default Menu

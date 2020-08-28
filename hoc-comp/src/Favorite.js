@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {withToggler} from './HOCs/withToggler'
+import React from 'react'
+import Toggler from './HOCs/Toggler'
 
 
 function Favorite(props) {
@@ -19,18 +19,29 @@ function Favorite(props) {
 
     // render() {
         return (
-            <div>
-                <h3>Click heart to favorite</h3>
-                <h1>
-                    <span onClick= {props.toogle}>
-                        {props.on ? "♥️" : "💙" }
-                    </span>
-                </h1>
-            </div>
+            <Toggler defaultOnValue= {true} render= {(on, toggle)=> ( // with arrow function you just remove the paranthessis and return keyword
+
+                    <div>
+                    <h3>Click heart to favorite</h3>
+                    <h1>
+                        <span 
+                            onClick= {toggle}
+                        >
+                            {on ?  "💙" : "♥️" }
+                        </span>
+                    </h1>
+                </div>
+
+            )
+            
+            }/>
+           
         )
     }
 // }
 
-const SuperchargedFavoriteComponent = withToggler(Favorite, {defaulyOnValue: false})
+// const SuperchargedFavoriteComponent = withToggler(Favorite, {defaulyOnValue: false})
 // export default withToggler(Favorite)
-export default SuperchargedFavoriteComponent
+// export default SuperchargedFavoriteComponent
+
+export default Favorite
